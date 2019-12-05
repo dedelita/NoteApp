@@ -1,4 +1,4 @@
-package com.example.appex
+package com.example.noteapp
 
 import android.content.Intent
 import android.os.Bundle
@@ -32,14 +32,13 @@ class EditNoteActivity : AppCompatActivity() {
         note.content = etNewContent.text.toString()
         val success = dbHelper!!.updateNote(note)
         if(success) {
-            Toast.makeText(this, note.toString() + "Note updated", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, note.title + "Note updated", Toast.LENGTH_LONG).show()
             val intent = Intent(this, DisplayNoteActivity::class.java).apply {
                 putExtra(EXTRA_NOTE, note)
             }
             startActivity(intent)
         }
     }
-
 }
 
 private fun View.hideKeyboard() {

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Notes</string>
+    <string name="edit_message">Entrer un texte</string>
+    <string name="button_send">Envoyer</string>
+    <string name="edit_title">Titre</string>
+    <string name="button_add">Ajouter</string>
+    <string name="title_activity_main">Notes</string>
+    <string name="undo">Annuler</string>
+    <string name="deleted">Note supprimée</string>
+    <string name="noteDeleted">1 note supprimée</string>
+    <string name="action_edit">Modifier la note</string>
+    <string name="action_settings">Réglage</string>
+    <string name="action_delete">Supprimer la note</string>
+</resources>

@@ -1,4 +1,4 @@
-package com.example.appex
+package com.example.noteapp
 
 import android.content.Context
 import android.content.Intent
@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.note_item.view.*
-import java.io.Serializable
 
 class NoteAdapter(private val items: ArrayList<Note>, private val context: Context, private val dbHelper: MyDbHelper) :
     RecyclerView.Adapter<NoteAdapter.NoteItemViewHolder>() {
@@ -64,12 +63,9 @@ class NoteAdapter(private val items: ArrayList<Note>, private val context: Conte
     }
 
     private fun showUndoSnackbar(rv: RecyclerView) {
-        val snackBarUndo = Snackbar.make(
-            rv, context.getString(R.string.noteDeleted),
-            Snackbar.LENGTH_LONG
-        )
+        val snackBarUndo = Snackbar.make(rv, R.string.deleted, Snackbar.LENGTH_LONG)
 
-        snackBarUndo.setActionTextColor(Color.parseColor("#FFFFFF"));
+        snackBarUndo.setActionTextColor(Color.parseColor("#FFFFFF"))
         snackBarUndo.setAction(context.getString(R.string.undo)) { undoDelete() }
         snackBarUndo.addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
             override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {

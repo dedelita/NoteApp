@@ -1,10 +1,7 @@
-package com.example.appex
+package com.example.noteapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
-const val EXTRA_NOTE = "com.example.appDMP.NOTE"
+const val EXTRA_NOTE = "com.example.noteapp.NOTE"
 class MainActivity : AppCompatActivity() {
     private var dbHelper: MyDbHelper? = null
 

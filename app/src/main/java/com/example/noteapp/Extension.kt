@@ -1,4 +1,4 @@
-package com.example.appex
+package com.example.noteapp
 
 import android.view.LayoutInflater
 import android.view.View

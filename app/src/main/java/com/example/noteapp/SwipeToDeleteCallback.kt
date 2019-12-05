@@ -1,4 +1,4 @@
-package com.example.appex
+package com.example.noteapp
 
 import android.content.Context
 import android.graphics.Canvas

@@ -1,7 +1,6 @@
-package com.example.appex
+package com.example.noteapp
 
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -12,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_display_note.*
 class DisplayNoteActivity : AppCompatActivity() {
     private var dbHelper: MyDbHelper? = null
     var note: Note = Note()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_note)
@@ -46,7 +46,9 @@ class DisplayNoteActivity : AppCompatActivity() {
         }
 
         R.id.action_delete -> {
-            dbHelper!!.deleteNote(note.id)
+            val success = dbHelper!!.deleteNote(note.id)
+            if(success)
+                Toast.makeText(this, R.string.deleted, Toast.LENGTH_LONG).show()
             startActivity(Intent(this, MainActivity::class.java))
             true
         }

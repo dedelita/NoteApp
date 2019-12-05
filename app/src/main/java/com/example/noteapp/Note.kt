@@ -1,4 +1,4 @@
-package com.example.appex
+package com.example.noteapp
 
 import android.os.Parcel
 import android.os.Parcelable

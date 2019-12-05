@@ -1,4 +1,4 @@
-package com.example.appex
+package com.example.noteapp
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -22,14 +22,14 @@ class NewNoteActivity : AppCompatActivity() {
 
         btnAddNote.setOnClickListener{
             //read value from EditText to a String variable
-            val newtitle : String = etNewTitle.text.toString()
+            val newtitle : String = etTitle.text.toString()
 
             //check if the EditText have values or not
-            if(newtitle.trim().length>0) {
-                Toast.makeText(applicationContext, "Message : "+newtitle, Toast.LENGTH_SHORT).show()
+            if(newtitle.trim().isNotEmpty()) {
+                addNewNote()
             }else{
-                Toast.makeText(applicationContext, "Please enter some message! ", Toast.LENGTH_SHORT).show()
-                etNewTitle.error = "Required"
+                Toast.makeText(applicationContext, "", Toast.LENGTH_SHORT).show()
+                etTitle.error = "Title required"
             }
         }
         val contentView: View = findViewById(R.id.NewNote)
@@ -38,7 +38,7 @@ class NewNoteActivity : AppCompatActivity() {
         }
 
     }
-        fun addNewNote(view: View) {
+        fun addNewNote() {
             dbHelper = MyDbHelper(this, null)
             val current = LocalDateTime.now()
             val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
@@ -50,11 +50,8 @@ class NewNoteActivity : AppCompatActivity() {
             val success = dbHelper!!.addNote(note)
 
             if (success) {
-                Toast.makeText(
-                    this,
-                    note.title + " Added to database at " + note.datetime,
-                    Toast.LENGTH_LONG
-                ).show()
+                Toast.makeText(this, note.title + " Added at " + note.datetime,
+                    Toast.LENGTH_LONG).show()
                 val intent = Intent(this, DisplayNoteActivity::class.java).apply {
                     putExtra(EXTRA_NOTE, note)
                 }

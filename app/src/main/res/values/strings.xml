@@ -6,6 +6,7 @@
     <string name="button_add">Add</string>
     <string name="title_activity_main">Notes</string>
     <string name="undo">Undo</string>
+    <string name="deleted">Note deleted</string>
     <string name="noteDeleted">1 note deleted</string>
     <string name="action_edit">Edit note</string>
     <string name="action_settings">Settings</string>
