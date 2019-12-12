@@ -12,4 +12,8 @@
     <string name="action_edit">Modifier la note</string>
     <string name="action_settings">Réglage</string>
     <string name="action_delete">Supprimer la note</string>
+    <string name="action_share">Partager la note</string>
+    <string name="cancel">Annuler</string>
+    <string name="sure">Voulez-vous vraiment quitter ?</string>
+    <string name="yes">Oui</string>
 </resources>

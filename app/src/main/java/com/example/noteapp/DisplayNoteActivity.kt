@@ -32,11 +32,6 @@ class DisplayNoteActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.action_settings -> {
-            // User chose the "Settings" item, show the app settings UI...
-            true
-        }
-
         R.id.action_edit -> {
             val intent = Intent(this, EditNoteActivity::class.java).apply {
                 putExtra(EXTRA_NOTE, note)
@@ -53,9 +48,20 @@ class DisplayNoteActivity : AppCompatActivity() {
             true
         }
 
+        R.id.action_share -> {
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                //putExtra(Intent.EXTRA_TITLE, note.title)
+                putExtra(Intent.EXTRA_TEXT, note.content)
+                type = "text/plain"
+            }
+
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
+            true
+        }
+
         else -> {
-            // If we got here, the user's action was not recognized.
-            // Invoke the superclass to handle it.
             super.onOptionsItemSelected(item)
         }
     }

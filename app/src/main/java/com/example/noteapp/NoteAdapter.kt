@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
@@ -40,7 +39,6 @@ class NoteAdapter(private val items: ArrayList<Note>, private val context: Conte
 
         override fun onClick(v: View) {
             val context = v.context
-            Toast.makeText(context, note.toString(), Toast.LENGTH_LONG).show()
             val showNoteIntent = Intent(context, DisplayNoteActivity::class.java).apply {
                 putExtra(EXTRA_NOTE, note)
             }

@@ -67,7 +67,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun goNewNote() {
-        val intent = Intent(this, NewNoteActivity::class.java)
-        startActivity(intent)
+        startActivity(Intent(this, NewNoteActivity::class.java))
     }
+
+
 }
