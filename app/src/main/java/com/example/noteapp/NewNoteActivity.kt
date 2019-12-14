@@ -41,7 +41,7 @@ class NewNoteActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        exitByBackKey()
+        onBackPressed()
         return true
     }
 
@@ -68,15 +68,7 @@ class NewNoteActivity : AppCompatActivity() {
         }
     }
 
-    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            exitByBackKey()
-            return true
-        }
-        return super.onKeyDown(keyCode, event)
-    }
-
-    protected fun exitByBackKey() {
+    override fun onBackPressed() {
         AlertDialog.Builder(this)
             .setMessage(R.string.sure)
             .setPositiveButton(R.string.yes) { _, _ ->

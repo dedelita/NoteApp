@@ -1,5 +1,6 @@
 package com.example.noteapp
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -55,6 +56,23 @@ class EditNoteActivity : AppCompatActivity() {
             }
             startActivity(intent)
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    override fun onBackPressed() {
+        AlertDialog.Builder(this)
+            .setMessage(R.string.sure)
+            .setPositiveButton(R.string.yes) { _, _ ->
+                startActivity(Intent(this, DisplayNoteActivity::class.java).apply {
+                    this.putExtra(EXTRA_NOTE, note)
+                })
+            }
+            .setNegativeButton(R.string.cancel, null)
+            .show()
     }
 }
 

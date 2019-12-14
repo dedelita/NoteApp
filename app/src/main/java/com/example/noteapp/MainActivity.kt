@@ -70,5 +70,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent(this, NewNoteActivity::class.java))
     }
 
-
+    override fun onBackPressed() {
+        finishAffinity()
+    }
 }

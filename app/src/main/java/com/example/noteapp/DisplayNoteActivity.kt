@@ -1,8 +1,11 @@
 package com.example.noteapp
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
+import android.view.Display
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -20,6 +23,7 @@ class DisplayNoteActivity : AppCompatActivity() {
         val actionbar = supportActionBar!!
         actionbar.setDisplayHomeAsUpEnabled(true)
 
+        tv_note_content.movementMethod = ScrollingMovementMethod.getInstance()
         note = intent.getParcelableExtra(EXTRA_NOTE) as Note
         title = note.title
         tv_note_datetime.text = note.datetime
@@ -64,5 +68,14 @@ class DisplayNoteActivity : AppCompatActivity() {
         else -> {
             super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainActivity::class.java))
     }
 }
