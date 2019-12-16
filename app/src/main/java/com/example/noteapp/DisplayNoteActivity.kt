@@ -1,11 +1,9 @@
 package com.example.noteapp
 
-import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
-import android.view.Display
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -43,7 +41,6 @@ class DisplayNoteActivity : AppCompatActivity() {
             startActivity(intent)
             true
         }
-
         R.id.action_delete -> {
             val success = dbHelper!!.deleteNote(note.id)
             if(success)
@@ -51,11 +48,10 @@ class DisplayNoteActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
             true
         }
-
         R.id.action_share -> {
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
-                //putExtra(Intent.EXTRA_TITLE, note.title)
+                putExtra(Intent.EXTRA_SUBJECT, note.title)
                 putExtra(Intent.EXTRA_TEXT, note.content)
                 type = "text/plain"
             }
@@ -64,18 +60,17 @@ class DisplayNoteActivity : AppCompatActivity() {
             startActivity(shareIntent)
             true
         }
-
         else -> {
             super.onOptionsItemSelected(item)
         }
     }
 
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainActivity::class.java))
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
-    }
-
-    override fun onBackPressed() {
-        startActivity(Intent(this, MainActivity::class.java))
     }
 }

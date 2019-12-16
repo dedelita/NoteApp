@@ -13,23 +13,22 @@ import kotlinx.android.synthetic.main.activity_new_note.*
 class EditNoteActivity : AppCompatActivity() {
     private var dbHelper: MyDbHelper? = null
     private var note: Note = Note()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_note)
         dbHelper = MyDbHelper(this, null)
 
         btnAddNote.setOnClickListener{
-            //read value from EditText to a String variable
-            val newtitle : String = etTitle.text.toString()
-            val newcontent : String = etContent.text.toString()
+            val newtitle : String = etTitle.text.toString().trim()
+            val newcontent : String = etContent.text.toString().trim()
 
-            //check if the EditText have values or not
-            if(newtitle.trim().isNotEmpty() && newcontent.trim().isNotEmpty()) {
+            if(newtitle.isNotEmpty() && newcontent.isNotEmpty()) {
                 editNote(it)
             }else{
-                if(newtitle.trim().isEmpty())
+                if(newtitle.isEmpty())
                     etTitle.error = "Title required"
-                if(newcontent.trim().isEmpty())
+                if(newcontent.isEmpty())
                     etContent.error = "Text required"
             }
         }
@@ -44,7 +43,7 @@ class EditNoteActivity : AppCompatActivity() {
         }
     }
 
-    fun editNote(view: View) {
+    private fun editNote(view: View) {
         view.requestFocus()
         note.title = etTitle.text.toString().trim()
         note.content = etContent.text.toString().trim()
@@ -58,11 +57,6 @@ class EditNoteActivity : AppCompatActivity() {
         }
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
-    }
-
     override fun onBackPressed() {
         AlertDialog.Builder(this)
             .setMessage(R.string.sure)
@@ -73,6 +67,11 @@ class EditNoteActivity : AppCompatActivity() {
             }
             .setNegativeButton(R.string.cancel, null)
             .show()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
 

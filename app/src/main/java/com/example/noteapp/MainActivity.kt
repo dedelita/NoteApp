@@ -18,7 +18,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        fab.setOnClickListener { goNewNote() }
+        fab.setOnClickListener {
+            startActivity(Intent(this, NewNoteActivity::class.java))
+        }
 
         rv_note.layoutManager = LinearLayoutManager(this)
         rv_note.adapter = NoteAdapter(getNotes(), this, dbHelper!!)
@@ -64,10 +66,6 @@ class MainActivity : AppCompatActivity() {
         }
         cursor.close()
         return listNotes
-    }
-
-    private fun goNewNote() {
-        startActivity(Intent(this, NewNoteActivity::class.java))
     }
 
     override fun onBackPressed() {

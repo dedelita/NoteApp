@@ -61,11 +61,11 @@ class NoteAdapter(private val items: ArrayList<Note>, private val context: Conte
     }
 
     private fun showUndoSnackbar(rv: RecyclerView) {
-        val snackBarUndo = Snackbar.make(rv, R.string.deleted, Snackbar.LENGTH_LONG)
+        val snackbarUndo = Snackbar.make(rv, R.string.deleted, Snackbar.LENGTH_LONG)
 
-        snackBarUndo.setActionTextColor(Color.parseColor("#FFFFFF"))
-        snackBarUndo.setAction(context.getString(R.string.undo)) { undoDelete() }
-        snackBarUndo.addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
+        snackbarUndo.setActionTextColor(Color.parseColor("#FFFFFF"))
+        snackbarUndo.setAction(context.getString(R.string.undo)) { undoDelete() }
+        snackbarUndo.addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
             override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                 if (event == Snackbar.Callback.DISMISS_EVENT_TIMEOUT) {
                     dbHelper.deleteNote(deletedItem.id)
@@ -73,7 +73,7 @@ class NoteAdapter(private val items: ArrayList<Note>, private val context: Conte
                 super.onDismissed(transientBottomBar, event)
             }
         })
-        snackBarUndo.show()
+        snackbarUndo.show()
     }
 
     private fun undoDelete() {

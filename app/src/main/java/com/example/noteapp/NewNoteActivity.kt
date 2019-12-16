@@ -1,10 +1,8 @@
 package com.example.noteapp
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -24,10 +22,8 @@ class NewNoteActivity : AppCompatActivity() {
 
 
         btnAddNote.setOnClickListener {
-            //read value from EditText to a String variable
             val newtitle: String = etTitle.text.toString()
 
-            //check if the EditText have values or not
             if (newtitle.trim().isNotEmpty()) {
                 addNewNote()
             } else {
@@ -69,13 +65,17 @@ class NewNoteActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        AlertDialog.Builder(this)
-            .setMessage(R.string.sure)
-            .setPositiveButton(R.string.yes) { _, _ ->
-                startActivity(Intent(this, MainActivity::class.java))
-            }
-            .setNegativeButton(R.string.cancel, null)
-            .show()
+        if(etTitle.text.trim().isNotEmpty() || etContent.text.trim().isNotEmpty()) {
+            AlertDialog.Builder(this)
+                .setMessage(R.string.sure)
+                .setPositiveButton(R.string.yes) { _, _ ->
+                    startActivity(Intent(this, MainActivity::class.java))
+                }
+                .setNegativeButton(R.string.cancel, null)
+                .show()
+        } else {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
     }
 
     fun View.hideKeyboard() {
